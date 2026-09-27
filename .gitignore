@@ -1,0 +1,15 @@
+.env
+**/.env
+!.env.example
+!**/.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+node_modules/
+.npm-cache/
+dist/
+.local-data/
+evaluation/results*.json
+*.log
+tmp/

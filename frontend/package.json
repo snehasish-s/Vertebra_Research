@@ -1,0 +1,24 @@
+{
+  "name": "vertebra-research",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "format": "prettier --write src vite.config.js index.html"
+  },
+  "dependencies": {
+    "lucide-react": "0.511.0",
+    "pdfjs-dist": "5.4.149",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-router-dom": "7.18.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.5.0",
+    "prettier": "3.6.2",
+    "vite": "6.4.3"
+  }
+}

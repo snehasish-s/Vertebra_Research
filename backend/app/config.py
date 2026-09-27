@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Literal
 
-from pydantic import Field, model_validator
+from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -9,6 +9,20 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=Path(__file__).parents[1] / '.env', extra='ignore')
     app_mode: Literal['local', 'live'] = 'local'
     cors_origins: list[str] = ['http://localhost:5173', 'http://127.0.0.1:5173']
+
+    @field_validator('cors_origins', mode='before')
+    @classmethod
+    def parse_cors_origins(cls, value):
+        if isinstance(value, str):
+            value = value.strip()
+            if value.startswith('[') and value.endswith(']'):
+                import json
+                try:
+                    return json.loads(value)
+                except Exception:
+                    pass
+            return [origin.strip() for origin in value.split(',') if origin.strip()]
+        return value
     uploads_enabled: bool = True
     deletes_enabled: bool = True
     demo_access_token: str = ''
